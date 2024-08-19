@@ -24,6 +24,10 @@ type apiConfig struct {
 //go:embed static/*
 var staticFiles embed.FS
 
+func unused() {
+	// unused function to test linter
+}
+
 func main() {
 	err := godotenv.Load(".env")
 	if err != nil {

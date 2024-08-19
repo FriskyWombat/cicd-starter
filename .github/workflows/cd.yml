@@ -21,6 +21,9 @@ jobs:
             with:
               go-version: '1.22'
 
+          - name: Install Goose for db migrations
+            run: go install github.com/pressly/goose/v3/cmd/goose@latest
+
           - name: Build app
             run: ./scripts/buildprod.sh
 
@@ -35,7 +38,7 @@ jobs:
           - name: 'Use gcloud CLI'
             run: 'gcloud info'
 
-          - name: Push to Google Cloud Platform
+          - name: Build and push to Google Cloud Platform
             run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-433019/notely-ar-repo/notely:latest .
 
           - name: Run goose db migrations
